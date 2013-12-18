@@ -29,7 +29,7 @@ public class GenericCallback<T> implements Callback<T> {
 
 	@Override
 	public void success(T data, Response r) {
-		ResponseNotification<T> notification = new ResponseNotification<T>();
+		ResponseNotification<T> notification = createTypedResponse();
 		notification.requestId = requestId;
 		notification.data = data;
 		notification.origin = r;
@@ -37,4 +37,8 @@ public class GenericCallback<T> implements Callback<T> {
 		EventBusManager.post(notification);
 	}
 
+	protected ResponseNotification<T> createTypedResponse() {
+		return new ResponseNotification<T>();
+	}
+	
 }

@@ -1,26 +1,23 @@
 package yanovski.lol.api.services;
 
-import java.util.List;
 import java.util.UUID;
 
+import retrofit.RestAdapter;
+import yanovski.lol.api.callbacks.ChampionsCallback;
+import yanovski.lol.api.callbacks.LeaguesCallback;
+import yanovski.lol.api.callbacks.MasteryPagesCallback;
+import yanovski.lol.api.callbacks.PlayerStatsSummaryCallback;
+import yanovski.lol.api.callbacks.RankedStatsCallback;
+import yanovski.lol.api.callbacks.RecentGamesCallback;
+import yanovski.lol.api.callbacks.RunePagesCallback;
+import yanovski.lol.api.callbacks.SummonerCallback;
+import yanovski.lol.api.callbacks.SummonerNamesCallback;
+import yanovski.lol.api.callbacks.TeamsCallback;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
-
-import retrofit.RestAdapter;
-import yanovski.lol.api.callbacks.GenericCallback;
-import yanovski.lol.api.callbacks.LeaguesCallback;
-import yanovski.lol.api.models.ChampionList;
-import yanovski.lol.api.models.MasteryPages;
-import yanovski.lol.api.models.PlayerStatsSummaryList;
-import yanovski.lol.api.models.RankedStats;
-import yanovski.lol.api.models.RecentGames;
-import yanovski.lol.api.models.RunePages;
-import yanovski.lol.api.models.Summoner;
-import yanovski.lol.api.models.SummonerNames;
-import yanovski.lol.api.models.Team;
 
 public class LoLServices {
 	public static final String API_KEY_METADATA_NAME = "yanovski.lol.api.API_KEY";
@@ -53,7 +50,7 @@ public class LoLServices {
 		String requestId = UUID.randomUUID().toString();
 
 		LoLServicesClient instance = getInstance();
-		instance.getSummonerByName(region, name, RIOT_SERVICES_API_KEY, new GenericCallback<Summoner>(
+		instance.getSummonerByName(region, name, RIOT_SERVICES_API_KEY, new SummonerCallback(
 				requestId));
 
 		return requestId;
@@ -74,7 +71,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getChampions(region, freeToPlay, RIOT_SERVICES_API_KEY,
-				new GenericCallback<ChampionList>(requestId));
+				new ChampionsCallback(requestId));
 
 		return requestId;
 	}
@@ -85,7 +82,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getRecentGamesBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
-				new GenericCallback<RecentGames>(requestId));
+				new RecentGamesCallback(requestId));
 
 		return requestId;
 	}
@@ -95,7 +92,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getStatsBySummnerId(region, summonerId, season, RIOT_SERVICES_API_KEY,
-				new GenericCallback<PlayerStatsSummaryList>(requestId));
+				new PlayerStatsSummaryCallback(requestId));
 
 		return requestId;
 	}
@@ -106,7 +103,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getRandkedStatsBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
-				new GenericCallback<RankedStats>(requestId));
+				new RankedStatsCallback(requestId));
 
 		return requestId;
 	}
@@ -116,7 +113,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getMasteriesBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
-				new GenericCallback<MasteryPages>(requestId));
+				new MasteryPagesCallback(requestId));
 
 		return requestId;
 	}
@@ -126,7 +123,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getSummonerBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
-				new GenericCallback<Summoner>(requestId));
+				new SummonerCallback(requestId));
 
 		return requestId;
 	}
@@ -137,7 +134,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getSummonerNamesBySummnerId(region, summonerIds, RIOT_SERVICES_API_KEY,
-				new GenericCallback<SummonerNames>(requestId));
+				new SummonerNamesCallback(requestId));
 
 		return requestId;
 	}
@@ -147,7 +144,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getTeamsBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
-				new GenericCallback<List<Team>>(requestId));
+				new TeamsCallback(requestId));
 
 		return requestId;
 	}
@@ -157,7 +154,7 @@ public class LoLServices {
 
 		LoLServicesClient instance = getInstance();
 		instance.getRunesBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
-				new GenericCallback<RunePages>(requestId));
+				new RunePagesCallback(requestId));
 
 		return requestId;
 	}
