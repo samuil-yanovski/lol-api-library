@@ -7,5 +7,6 @@ public class League {
 	public String queue;
 	public String name;
 	public String tier;
+	public String participantId;
 	public List<LeagueItem> entries;
 }

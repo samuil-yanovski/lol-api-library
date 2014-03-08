@@ -15,7 +15,7 @@ public class Team {
 	public String secondLastJoinDate;
 	public String status;
 	public String tag;
-	public TeamId teamId;
+	public String fullId;
 	public TeamStatSummary teamStatSummary;
 	public String thirdLastJoinDate;
 	public long timestamp;

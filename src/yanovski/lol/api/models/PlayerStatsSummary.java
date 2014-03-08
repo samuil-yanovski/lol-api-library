@@ -1,9 +1,8 @@
 package yanovski.lol.api.models;
 
-import java.util.List;
 
 public class PlayerStatsSummary {
-	public List<AggregatedStat> aggregatedStats;
+	public AggregatedStat aggregatedStats;
 	public int wins;
 	public int losses;
 	public long modifyDate;

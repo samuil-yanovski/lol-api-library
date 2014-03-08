@@ -17,19 +17,19 @@ import retrofit.converter.GsonConverter;
 import retrofit.mime.TypedString;
 import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
-import yanovski.lol.api.models.MasteryPages;
+import yanovski.lol.api.models.Team;
 
 import com.google.gson.Gson;
 
-public class MasteryPagesCallback extends GenericCallback<Response> {
+public class TeamsMapCallback extends GenericCallback<Response> {
 
-	public MasteryPagesCallback(String requestId) {
+	public TeamsMapCallback(String requestId) {
 		super(requestId);
 	}
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<List<MasteryPages>> notification = new ResponseNotification<List<MasteryPages>>();
+		ResponseNotification<List<Team>> notification = new ResponseNotification<List<Team>>();
 		notification.requestId = requestId();
 		notification.origin = r;
 		
@@ -47,17 +47,17 @@ public class MasteryPagesCallback extends GenericCallback<Response> {
 			int length = names.length();
 			GsonConverter converter = new GsonConverter(new Gson());
 			
-			List<MasteryPages> pages = new ArrayList<MasteryPages>();
+			List<Team> teams = new ArrayList<Team>();
 			for (int index = 0; index < length; ++index) {
 				String name = names.getString(index);
 				JSONObject current = json.optJSONObject(name);
 				if (null != current) {
-					MasteryPages p = (MasteryPages) converter.fromBody(new TypedString(current.toString()), MasteryPages.class);
-					pages.add(p);
+					Team t = (Team) converter.fromBody(new TypedString(current.toString()), Team.class);
+					teams.add(t);
 				}
 			}
 			
-			notification.data = pages;
+			notification.data = teams;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {

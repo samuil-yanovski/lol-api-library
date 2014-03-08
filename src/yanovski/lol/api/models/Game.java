@@ -15,7 +15,7 @@ public class Game {
 	public int mapId;
 	public int spell1;
 	public int spell2;
-	public List<RawStat> statistics;
+	public RawStat stats;
 	public String subType;
 	public int teamId;
 }

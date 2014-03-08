@@ -4,15 +4,18 @@ import java.util.UUID;
 
 import retrofit.RestAdapter;
 import yanovski.lol.api.callbacks.ChampionsCallback;
-import yanovski.lol.api.callbacks.LeaguesCallback;
 import yanovski.lol.api.callbacks.MasteryPagesCallback;
 import yanovski.lol.api.callbacks.PlayerStatsSummaryCallback;
 import yanovski.lol.api.callbacks.RankedStatsCallback;
 import yanovski.lol.api.callbacks.RecentGamesCallback;
 import yanovski.lol.api.callbacks.RunePagesCallback;
+import yanovski.lol.api.callbacks.SimpleLeagueCallback;
+import yanovski.lol.api.callbacks.SimpleLeagueEntriesCallback;
+import yanovski.lol.api.callbacks.SimpleLeaguesCallback;
 import yanovski.lol.api.callbacks.SummonerCallback;
 import yanovski.lol.api.callbacks.SummonerNamesCallback;
 import yanovski.lol.api.callbacks.TeamsCallback;
+import yanovski.lol.api.callbacks.TeamsMapCallback;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -55,12 +58,32 @@ public class LoLServices {
 
 		return requestId;
 	}
+	
+	public static String getLeagueEntriesBySummnerId(String region, long summonerId) {
+		String requestId = UUID.randomUUID().toString();
+
+		LoLServicesClient instance = getInstance();
+		instance.getLeagueEntriesBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY, new SimpleLeagueEntriesCallback(
+				requestId));
+
+		return requestId;
+	}
+	
+	public static String getChallengerLeague(String region, String type) {
+		String requestId = UUID.randomUUID().toString();
+
+		LoLServicesClient instance = getInstance();
+		instance.getChallengerLeague(region, type, RIOT_SERVICES_API_KEY, new SimpleLeagueCallback(
+				requestId));
+
+		return requestId;
+	}
 
 	public static String getLeaguesBySummnerId(String region, long summonerId) {
 		String requestId = UUID.randomUUID().toString();
 
 		LoLServicesClient instance = getInstance();
-		instance.getLeaguesBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY, new LeaguesCallback(
+		instance.getLeaguesBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY, new SimpleLeaguesCallback(
 				requestId));
 
 		return requestId;
@@ -145,6 +168,16 @@ public class LoLServices {
 		LoLServicesClient instance = getInstance();
 		instance.getTeamsBySummnerId(region, summonerId, RIOT_SERVICES_API_KEY,
 				new TeamsCallback(requestId));
+
+		return requestId;
+	}
+	
+	public static String getTeamsByTeamId(String region, String teamIds) {
+		String requestId = UUID.randomUUID().toString();
+
+		LoLServicesClient instance = getInstance();
+		instance.getTeamsByTeamId(region, teamIds, RIOT_SERVICES_API_KEY,
+				new TeamsMapCallback(requestId));
 
 		return requestId;
 	}
