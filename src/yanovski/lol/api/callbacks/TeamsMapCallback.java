@@ -18,6 +18,7 @@ import retrofit.mime.TypedString;
 import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
 import yanovski.lol.api.models.Team;
+import yanovski.lol.api.responses.TeamsResponseNotification;
 
 import com.google.gson.Gson;
 
@@ -29,7 +30,7 @@ public class TeamsMapCallback extends GenericCallback<Response> {
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<List<Team>> notification = new ResponseNotification<List<Team>>();
+		ResponseNotification<List<Team>> notification = new TeamsResponseNotification();
 		notification.requestId = requestId();
 		notification.origin = r;
 		

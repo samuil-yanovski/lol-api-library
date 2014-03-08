@@ -18,6 +18,7 @@ import retrofit.mime.TypedString;
 import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
 import yanovski.lol.api.models.League;
+import yanovski.lol.api.responses.LeaguesResponseNotification;
 
 import com.google.gson.Gson;
 
@@ -29,7 +30,7 @@ public class LeaguesCallback extends GenericCallback<Response> {
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<List<League>> notification = new ResponseNotification<List<League>>();
+		ResponseNotification<List<League>> notification = new LeaguesResponseNotification();
 		notification.requestId = requestId();
 		notification.origin = r;
 		

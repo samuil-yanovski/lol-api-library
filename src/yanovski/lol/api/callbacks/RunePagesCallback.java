@@ -18,6 +18,7 @@ import retrofit.mime.TypedString;
 import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
 import yanovski.lol.api.models.RunePages;
+import yanovski.lol.api.responses.RunePagesResponseNotification;
 
 import com.google.gson.Gson;
 
@@ -29,7 +30,7 @@ public class RunePagesCallback extends GenericCallback<Response> {
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<List<RunePages>> notification = new ResponseNotification<List<RunePages>>();
+		ResponseNotification<List<RunePages>> notification = new RunePagesResponseNotification();
 		notification.requestId = requestId();
 		notification.origin = r;
 		

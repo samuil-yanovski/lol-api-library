@@ -18,6 +18,7 @@ import retrofit.mime.TypedString;
 import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
 import yanovski.lol.api.models.MasteryPages;
+import yanovski.lol.api.responses.MasteryPagesResponseNotification;
 
 import com.google.gson.Gson;
 
@@ -29,7 +30,7 @@ public class MasteryPagesCallback extends GenericCallback<Response> {
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<List<MasteryPages>> notification = new ResponseNotification<List<MasteryPages>>();
+		ResponseNotification<List<MasteryPages>> notification = new MasteryPagesResponseNotification();
 		notification.requestId = requestId();
 		notification.origin = r;
 		

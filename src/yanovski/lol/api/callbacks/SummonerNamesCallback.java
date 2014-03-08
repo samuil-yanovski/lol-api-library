@@ -16,6 +16,7 @@ import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
 import yanovski.lol.api.models.SummonerName;
 import yanovski.lol.api.models.SummonerNames;
+import yanovski.lol.api.responses.SummonerNamesResponseNotification;
 
 public class SummonerNamesCallback extends GenericCallback<Response> {
 
@@ -25,7 +26,7 @@ public class SummonerNamesCallback extends GenericCallback<Response> {
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<SummonerNames> notification = new ResponseNotification<SummonerNames>();
+		ResponseNotification<SummonerNames> notification = new SummonerNamesResponseNotification();
 		notification.requestId = requestId();
 		notification.origin = r;
 		

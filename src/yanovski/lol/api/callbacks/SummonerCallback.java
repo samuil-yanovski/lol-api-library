@@ -20,6 +20,7 @@ import retrofit.mime.TypedString;
 import yanovski.lol.api.messages.EventBusManager;
 import yanovski.lol.api.messages.ResponseNotification;
 import yanovski.lol.api.models.Summoner;
+import yanovski.lol.api.responses.SummonersResponseNotification;
 
 public class SummonerCallback extends GenericCallback<Response> {
 
@@ -29,7 +30,7 @@ public class SummonerCallback extends GenericCallback<Response> {
 
 	@Override
 	public void success(Response r, Response response) {
-		ResponseNotification<List<Summoner>> notification = new ResponseNotification<List<Summoner>>();
+		ResponseNotification<List<Summoner>> notification = new SummonersResponseNotification();
 		notification.requestId = requestId();
 		notification.origin = r;
 		
